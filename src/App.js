@@ -1,18 +1,33 @@
 import React, { Component } from 'react';
 import './App.css';
+import NavBar from './Components/NavBar'
+import TextField from '@material-ui/core/TextField'
 
 class App extends Component {
   constructor(props){
   super(props)
 
   this.state = {
-    iLoggedIn: false
+    isLoggedIn: true
   }
   }
 
+  loggedIn = (e) => {
+    this.setSate({
+      isLoggedIn : false
+    })
+  }
+
+
   render () {
+    if (this.state.isLoggedIn)
+
   return (
-    <div>Hello</div>
+    <div>
+      <NavBar/>
+      <TextField />
+      <button>Log In</button>
+    </div>
   );
 }
 }
