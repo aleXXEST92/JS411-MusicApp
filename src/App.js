@@ -3,6 +3,7 @@ import './App.css';
 import NavBar from './Components/NavBar'
 import Login from './Components/Login'
 import Button from "@material-ui/core/Button"
+import Dashboard from './Components/Dashboard'
 
 class App extends Component {
   constructor(props){
@@ -30,9 +31,18 @@ class App extends Component {
             <Button onClick={this.loggedIn} variant="contained" color="primary">Log In</Button>
           </main>
         </div>
-      );
+      ); 
+    } else {
+      return (
+        <div>
+          <NavBar/>
+          <main>
+            <Dashboard />
+          </main>
+        </div>
+      ); 
     }
-  } else 
+  } 
 }
 
 export default App;
