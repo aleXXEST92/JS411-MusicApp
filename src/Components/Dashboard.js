@@ -9,23 +9,19 @@ class Dashboard extends Component {
         super(props)
 
         this.state = {
-            isNotifs: [],
+            onlineArr: [],
             isOnline: true,
+            isVolume: "",
+            volumeArr: [],
             qualityArr: [],
-            lowQuality: false
+            isQuality: false
+           
         }
     }
 
 
 
 onlineChangeHandler = () => {
-  
-    //setState for isOnline to be the opposite of its original state
-    //if state is false 
-    //define isNotifs, make a copy of state
-    //push message onto isNotifs array
-    //setState for isNotifs to allow changes to happen 
-
 
     this.setState({
         isOnline: !this.state.isOnline
@@ -33,24 +29,45 @@ onlineChangeHandler = () => {
  
     if (this.state.isOnline === false) {
     
-    let isNotifs = this.state.isNotifs
+    let onlineArr = this.state.onlineArr
 
-    isNotifs.push("Your application is offline. You won't be able to share or stream music to other devices.")
-    console.log(isNotifs)
+    onlineArr.push("Your application is offline. You won't be able to share or stream music to other devices.")
+    console.log(onlineArr)
     
     this.setState({
-        isNotifs: this.state.isNotifs
+        onlineArr: this.state.onlineArr
     })
     }
 }
 
-lowQualityHandler = () => {
+
+// isVolumeHandler = () => {
+//     this.setState({
+//         isVolume: this.state.isVolume
+//     })
+
+//     if (defaultValue > 80 || defaultValue === 80) {
+
+//     let volumeArr = this.state.volumeArr
+
+//     volumeArr.push("Listening to music at a high volume could cause long-term hearing loss.")
+//     console.log(volumeArr)
+
+//     this.setState({
+//     volumeArr: this.state.volumeArr       
+//     })
+//     }
+// }
+
+
+
+isQualityHandler = () => {
 
 this.setState({
-    lowQuality: !this.state.lowQuality
+    isQuality: !this.state.isQuality
 }) 
 
-if(this.state.lowQuality === true) {
+if(this.state.isQuality === true) {
 
     let qualityArr = this.state.qualityArr
 
@@ -66,11 +83,11 @@ if(this.state.lowQuality === true) {
         <Online onlineChangeHandler={this.onlineChangeHandler}/>
         <Volume/>
         <Quality 
-        lowQuality={this.state.lowQuality} 
-        lowQualityHandler={this.lowQualityHandler}/> 
+        isQuality={this.state.isQuality} 
+        isQualityHandler={this.isQualityHandler}/> 
         <h1>System Notifications</h1>
         <div>
-        {this.state.isOnline && this.state.isNotifs.map((item, index) => (
+        {this.state.isOnline && this.state.onlineArr.map((item, index) => (
         <p key={index}>{item}</p>
         ))}
          </div>

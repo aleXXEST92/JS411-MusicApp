@@ -32,7 +32,7 @@ render () {
           labelId="demo-simple-select-label"
           id="demo-simple-select"
         >
-          <MenuItem onChange={() => this.props.lowQualityHandler()} lowQuality={this.props.lowQuality} value={10}>Low</MenuItem>
+          <MenuItem onChange={() => this.props.isQualityHandler()} isQuality={this.props.isQuality} value={10}>Low</MenuItem>
           <MenuItem value={20}>Normal</MenuItem>
           <MenuItem value={30}>High</MenuItem>
         </Select>
