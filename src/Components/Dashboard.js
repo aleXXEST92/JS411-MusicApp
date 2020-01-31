@@ -1,7 +1,11 @@
 import React, { Component } from "react" 
 import Online from "./Online"
-import Volume from './Volume'
 import Quality from "./Quality"
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import Slider from '@material-ui/core/Slider';
+import Typography from '@material-ui/core/Typography';
 
 
 class Dashboard extends Component {
@@ -9,17 +13,12 @@ class Dashboard extends Component {
         super(props)
 
         this.state = {
-            onlineArr: [],
             isOnline: true,
-            isVolume: "",
-            volumeArr: [],
-            qualityArr: [],
-            isQuality: false
-           
+            alertArr: [],
+            volume: "",
+            quality: ""
         }
     }
-
-
 
 onlineChangeHandler = () => {
 
@@ -29,44 +28,75 @@ onlineChangeHandler = () => {
  
     if (this.state.isOnline === false) {
     
-    let onlineArr = this.state.onlineArr
+    let alertArr = this.state.alertArr
 
-    onlineArr.push("Your application is offline. You won't be able to share or stream music to other devices.")
-    console.log(onlineArr)
+    alertArr.push("Your application is offline. You won't be able to share or stream music to other devices.")
     
     this.setState({
-        onlineArr: this.state.onlineArr
+        alertArr: this.state.alertArr
     })
     }
 }
 
-qualityChangeHandler =(quality) => {
-    if (quality === low) 
-    let qualityArr = [...this.state.qualityArr]
-    qualityArr.push("Listening to music at a high volume could cause long-term hearing loss.")
-    this.setState({
-       qualityArr: quallity 
+volumeChangeHandler = (event, newValue) => {
+  this.setState({
+      event: newValue
+  })
+
+  if ( newValue === 80 || newValue > 80) {
+    let alert = [...this.state.alertArr]
+    alert.push("Listening to music at a high volume could cause long-term hearing loss.")
+    this.setState ({
+        alertArr: alert
     })
+    }
 }
+
+
+
+qualityChangeHandler =(quality) => {
+    if (quality === 1 ) {
+    let alert = [...this.state.alertArr]
+    alert.push("Music quality is degraded. Increase quality if your connection allows it.")
+    this.setState({
+       alertArr: alert 
+    })
+}}
+
 
     render () {
     return (
         <div>
         <Online onlineChangeHandler={this.onlineChangeHandler}/>
-        <Volume/>
+        
+        <Card>
+      <CardContent>
+        <Typography color="textSecondary" gutterBottom>
+          Master Volume
+        </Typography>
+      </CardContent>
+      <CardActions>
+      <Slider className='Slider'
+        onChange={this.volumeChangeHandler}
+        defaultValue={30}
+        aria-labelledby="discrete-slider"
+        valueLabelDisplay="auto"
+        step={10}
+        marks
+        min={10}
+        max={100}
+      />
+      </CardActions>
+    </Card>
+
         <Quality 
         onQualChange={this.qualityChangeHandler}
         /> 
         <h1>System Notifications</h1>
         <div>
-        {this.state.isOnline && this.state.onlineArr.map((item, index) => (
-        <p key={index}>{item}</p>
-        ))}
-         </div>
-         <div>
-            {this.state.lowQuality && this.state.qualityArr.map((item, index) => (
+            {this.state.alertArr.map((item, index) => (
             <p key={index}>{item}</p>
-            ))} 
+        ))}
          </div>
         </div>
     )
