@@ -38,12 +38,12 @@ onlineChangeHandler = () => {
   }
 }
 
-volumeChangeHandler = (event, newValue) => {
+volumeChangeHandler = (volume, highVolume) => {
   this.setState({
-      event: newValue
+      volume: highVolume
   })
 
-  if ( newValue === 80 || newValue > 80) {
+  if ( highVolume === 80 || highVolume > 80) {
     let alert = [...this.state.alertArr]
     alert.push("Listening to music at a high volume could cause long-term hearing loss.")
     this.setState ({
@@ -51,7 +51,6 @@ volumeChangeHandler = (event, newValue) => {
     })
   }
 }
-
 
 
 qualityChangeHandler =(quality) => {
