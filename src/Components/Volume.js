@@ -19,7 +19,7 @@ render () {
       </CardContent>
       <CardActions>
       <Slider className='Slider'
-        defaultValue={30}
+        defaultValue={value}
         aria-labelledby="discrete-slider"
         valueLabelDisplay="auto"
         step={10}

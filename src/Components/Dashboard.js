@@ -40,41 +40,13 @@ onlineChangeHandler = () => {
     }
 }
 
-
-// isVolumeHandler = () => {
-//     this.setState({
-//         isVolume: this.state.isVolume
-//     })
-
-//     if (defaultValue > 80 || defaultValue === 80) {
-
-//     let volumeArr = this.state.volumeArr
-
-//     volumeArr.push("Listening to music at a high volume could cause long-term hearing loss.")
-//     console.log(volumeArr)
-
-//     this.setState({
-//     volumeArr: this.state.volumeArr       
-//     })
-//     }
-// }
-
-
-
-isQualityHandler = () => {
-
-this.setState({
-    isQuality: !this.state.isQuality
-}) 
-
-if(this.state.isQuality === true) {
-
-    let qualityArr = this.state.qualityArr
-
-    qualityArr.push("Music quality is degraded. Increase quality if your connection allows it.")
-    console.log(qualityArr)
-
-}
+qualityChangeHandler =(quality) => {
+    if (quality === low) 
+    let qualityArr = [...this.state.qualityArr]
+    qualityArr.push("Listening to music at a high volume could cause long-term hearing loss.")
+    this.setState({
+       qualityArr: quallity 
+    })
 }
 
     render () {
@@ -83,8 +55,8 @@ if(this.state.isQuality === true) {
         <Online onlineChangeHandler={this.onlineChangeHandler}/>
         <Volume/>
         <Quality 
-        isQuality={this.state.isQuality} 
-        isQualityHandler={this.isQualityHandler}/> 
+        onQualChange={this.qualityChangeHandler}
+        /> 
         <h1>System Notifications</h1>
         <div>
         {this.state.isOnline && this.state.onlineArr.map((item, index) => (

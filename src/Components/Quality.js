@@ -11,7 +11,19 @@ import Select from '@material-ui/core/Select';
 import Typography from '@material-ui/core/Typography';
 
 
-export default class Quality extends Component {
+export default function Quality (props) {
+
+const [quality, setQuality] = React.useState('');
+
+isQualityHandler = (event) => {
+  setQuality:(event.target.value);
+  props.onQualChange
+
+  
+  }
+  }
+
+
 
 render () {
   return (
@@ -32,7 +44,7 @@ render () {
           labelId="demo-simple-select-label"
           id="demo-simple-select"
         >
-          <MenuItem onChange={() => this.props.isQualityHandler()} isQuality={this.props.isQuality} value={10}>Low</MenuItem>
+          <MenuItem value={10}>Low</MenuItem>
           <MenuItem value={20}>Normal</MenuItem>
           <MenuItem value={30}>High</MenuItem>
         </Select>
