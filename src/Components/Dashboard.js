@@ -35,7 +35,7 @@ onlineChangeHandler = () => {
     this.setState({
         alertArr: this.state.alertArr
     })
-    }
+  }
 }
 
 volumeChangeHandler = (event, newValue) => {
@@ -49,7 +49,7 @@ volumeChangeHandler = (event, newValue) => {
     this.setState ({
         alertArr: alert
     })
-    }
+  }
 }
 
 
